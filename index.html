@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloom Blocks – Barttsy Game Studio</title>
+<meta name="description" content="Bloom Blocks: a cozy block puzzle with 500 levels, a secret garden and flowers that bloom. Free on Google Play.">
+<meta property="og:title" content="Bloom Blocks – cozy block puzzle">
+<meta property="og:description" content="500 levels, 5 magical realms, a secret garden. Free on Google Play.">
+<meta property="og:image" content="img/share.jpg">
+<link rel="icon" href="img/icon.png">
+<style>
+:root{--bg:#f6f0ff;--ink:#3a1c7a;--soft:#6c52a8;--card:#ffffff;--accent:#ff4f7b;--accent2:#7a4dff}
+@media (prefers-color-scheme:dark){:root{--bg:#1f1140;--ink:#fff;--soft:#cdbcff;--card:#2f1c63}}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Nunito",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+main{max-width:880px;margin:0 auto;padding:24px 16px 56px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--soft)}
+.lang button{border:1px solid var(--soft);background:transparent;color:var(--soft);border-radius:999px;padding:4px 12px;cursor:pointer;font:inherit}
+.lang button[aria-pressed=true]{background:var(--accent2);border-color:var(--accent2);color:#fff}
+.hero{text-align:center;padding:28px 0 8px}
+.hero img{width:112px;height:112px;border-radius:26px;box-shadow:0 10px 28px rgba(80,40,160,.35)}
+h1{margin:14px 0 6px;font-size:clamp(30px,6vw,46px);line-height:1.1}
+.tag{font-size:clamp(17px,3.4vw,21px);color:var(--soft);margin:0 auto 20px;max-width:560px}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--accent),#ff8a1f);color:#fff;text-decoration:none;font-weight:800;font-size:19px;padding:15px 30px;border-radius:999px;box-shadow:0 8px 22px rgba(255,79,123,.4)}
+.btn:active{transform:scale(.98)}
+.free{display:block;margin-top:10px;font-size:14px;color:var(--soft)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:30px 0}
+.shots img{width:100%;height:auto;border-radius:18px;box-shadow:0 6px 18px rgba(60,30,120,.25)}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.feat div{background:var(--card);border-radius:18px;padding:16px;box-shadow:0 4px 14px rgba(60,30,120,.12)}
+.feat b{display:block;margin-bottom:4px}
+.qr{display:flex;flex-direction:column;align-items:center;gap:8px;margin:34px 0 4px;color:var(--soft);font-size:14px}
+#qr{background:#fff;padding:10px;border-radius:12px}
+footer{margin-top:34px;text-align:center;font-size:13px;color:var(--soft)}
+footer a{color:var(--soft)}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><span>Barttsy Game Studio</span>
+<span class="lang"><button id="l-en" aria-pressed="true">EN</button> <button id="l-tr" aria-pressed="false">TR</button></span></div>
+
+<section class="hero">
+<img src="img/icon.png" alt="Bloom Blocks">
+<h1>Bloom Blocks</h1>
+<p class="tag" data-k="tag"></p>
+<a class="btn" id="play" href="#" data-k="cta"></a>
+<span class="free" data-k="free"></span>
+</section>
+
+<section class="shots" id="shots"></section>
+
+<section class="feat">
+<div><b data-k="f1t"></b><span data-k="f1d"></span></div>
+<div><b data-k="f2t"></b><span data-k="f2d"></span></div>
+<div><b data-k="f3t"></b><span data-k="f3d"></span></div>
+<div><b data-k="f4t"></b><span data-k="f4d"></span></div>
+</section>
+
+<section class="qr"><div id="qr"></div><span data-k="qr"></span></section>
+
+<footer><a href="https://barttsygame-spec.github.io/bloomblocks/" data-k="priv"></a></footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+var T={
+ en:{tag:"A cozy block puzzle where every line you clear makes flowers bloom.",cta:"Get it on Google Play",free:"Free · plays offline",
+  f1t:"500 levels, 5 realms",f1d:"Thorns, buds, chain goals and a boss every 25 levels.",
+  f2t:"Hold basket",f2d:"Set a piece aside for later. Some levels close it.",
+  f3t:"Secret garden",f3d:"Decorate your own garden with the coins you earn.",
+  f4t:"Seasonal events",f4d:"Winter Garden: collect snowflakes, unlock the Aurora Lantern.",
+  qr:"Scan to open on your phone",priv:"Privacy policy"},
+ tr:{tag:"Her temizlediğin satırla çiçeklerin açtığı rahatlatıcı bir blok bulmaca.",cta:"Google Play'den indir",free:"Ücretsiz · internetsiz de oynanır",
+  f1t:"500 bölüm, 5 diyar",f1d:"Dikenler, tomurcuklar, zincir görevleri ve her 25 bölümde boss.",
+  f2t:"Sakla sepeti",f2d:"Bir parçayı sonraya sakla. Bazı bölümlerde sepet kapalı.",
+  f3t:"Gizli bahçe",f3d:"Kazandığın altınlarla kendi bahçeni süsle.",
+  f4t:"Mevsim etkinlikleri",f4d:"Kış Bahçesi: kar tanesi topla, Aurora Feneri'ni aç.",
+  qr:"Telefonunda açmak için okut",priv:"Gizlilik politikası"}
+};
+var params=new URLSearchParams(location.search);
+var src=(params.get("s")||"site").replace(/[^a-z0-9_-]/gi,"").slice(0,24)||"site";
+var BASE="https://play.google.com/store/apps/details?id=com.barttsy.bloomblocks";
+var LINK=BASE+"&referrer="+encodeURIComponent("utm_source="+src+"&utm_medium=landing");
+var lang=(params.get("l")||navigator.language||"en").toLowerCase().indexOf("tr")===0?"tr":"en";
+function setLang(l){
+ lang=l;document.documentElement.lang=l;
+ document.querySelectorAll("[data-k]").forEach(function(e){e.textContent=T[l][e.getAttribute("data-k")]});
+ document.getElementById("l-en").setAttribute("aria-pressed",l==="en");
+ document.getElementById("l-tr").setAttribute("aria-pressed",l==="tr");
+ var s=document.getElementById("shots");s.innerHTML="";
+ ["01_play","03_map","04_garden","06_hold"].forEach(function(f){var i=new Image();i.src="img/"+l+"_"+f+".jpg";i.alt="Bloom Blocks";i.loading="lazy";s.appendChild(i)});
+}
+document.getElementById("play").href=LINK;
+document.getElementById("l-en").onclick=function(){setLang("en")};
+document.getElementById("l-tr").onclick=function(){setLang("tr")};
+setLang(lang);
+try{new QRCode(document.getElementById("qr"),{text:BASE+"&referrer="+encodeURIComponent("utm_source=qr&utm_medium=landing"),width:150,height:150})}catch(e){document.getElementById("qr").style.display="none"}
+</script>
+</body>
+</html>
